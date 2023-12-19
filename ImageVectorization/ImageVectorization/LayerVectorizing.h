@@ -3,6 +3,7 @@
 #include <opencv2/opencv.hpp>
 #include <vector>
 #include <algorithm>
+#include <filesystem>
 #include "Region.h"
 #include "Utility.h"
 #include "Graph.h"
@@ -250,8 +251,8 @@ public:
 		int pos = layer_path.rfind('/');
 		string parent_dir = layer_path.substr(0, pos);
 		string grand_dir = parent_dir.substr(0, parent_dir.rfind('/'));
-		if (_access(grand_dir.c_str(), 0) == -1)  int ret = _mkdir(grand_dir.c_str());
-		if (_access(parent_dir.c_str(), 0) == -1) int ret = _mkdir(parent_dir.c_str());
+		if(!std::filesystem::exists(grand_dir)) std::filesystem::create_directory(grand_dir);
+		if(!std::filesystem::exists(parent_dir)) std::filesystem::create_directory(parent_dir);
 		string str_id = layer_path.substr(pos + 1, layer_path.size());
 
 		m_reconstructed_img = ReconstructImageWithLayers();
@@ -265,7 +266,7 @@ public:
 	void OutputLayerMask(string layer_mask_path) {
 		int pos = layer_mask_path.rfind('/');
 		string parent_dir = layer_mask_path.substr(0, pos);
-		if (_access(parent_dir.c_str(), 0) == -1) int ret = _mkdir(parent_dir.c_str());
+		if(!std::filesystem::exists(parent_dir)) std::filesystem::create_directory(parent_dir);
 
 		for (int i = 1; i < m_layer_objects.size(); i++) {
 			vector<Object>& objs = m_layer_objects[i];
@@ -295,8 +296,8 @@ public:
 		string parent_dir = json_path.substr(0, pos);
 		int pos1 = parent_dir.rfind('/');
 		string parent_parent_dir = parent_dir.substr(0, pos1);
-		if (_access(parent_parent_dir.c_str(), 0) == -1) int ret = _mkdir(parent_parent_dir.c_str());
-		if (_access(parent_dir.c_str(), 0) == -1) int ret = _mkdir(parent_dir.c_str());
+		if(!std::filesystem::exists(parent_parent_dir)) std::filesystem::create_directory(parent_parent_dir);
+		if(!std::filesystem::exists(parent_dir)) std::filesystem::create_directory(parent_dir);
 
 		ofstream of(json_path);
 		of << "{" << endl;

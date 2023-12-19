@@ -8,8 +8,8 @@
 #include <iomanip>
 #include <iostream>
 #include <opencv2/opencv.hpp>
-#include "io.h"
-#include <direct.h>
+// #include "io.h"
+// #include <direct.h>
 #include "Region.h"
 #include "Graph.h"
 #include "Tree.h"

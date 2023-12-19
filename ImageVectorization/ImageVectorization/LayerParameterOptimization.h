@@ -5,7 +5,7 @@
 #include <vector>
 #include <Eigen/Core>
 #include <autodiff/forward/dual.hpp>
-#include "nlopt.h"
+#include <nlopt.h>
 #include "Object.h"
 
 using namespace std;
@@ -70,7 +70,7 @@ public:
 		return (double)e_data + (double)e_gamut;
 	}
 
-	//x[0]:¦È, x[1]:dr, x[2]:dg, x[3]:db, x[4]: da,x[5]:r0, x[6]:g0, x[7]:b0, x[8]:a0
+	//x[0]:ï¿½ï¿½, x[1]:dr, x[2]:dg, x[3]:db, x[4]: da,x[5]:r0, x[6]:g0, x[7]:b0, x[8]:a0
 	ObjectParams CalculateLayerObjectParameters() {
 		int obj_n = m_obj_lid_map.size();
 		m_params.Initialize(obj_n);

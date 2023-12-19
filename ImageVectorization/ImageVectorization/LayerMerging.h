@@ -35,7 +35,9 @@ public:
 	}
 
 	void Release() {
-		m_regions.swap(vector<Region>());
+		// m_regions.swap(vector<Region>());
+		m_regions.clear();
+		m_regions.shrink_to_fit();
 	}
 
 	vector<vector<Object>> GetLayerObject() {
