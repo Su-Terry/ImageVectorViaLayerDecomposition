@@ -1,0 +1,3 @@
+/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ProcessRegionSegImg/build/CMakeFiles/ProcessRegionSegImg.dir
+/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ProcessRegionSegImg/build/CMakeFiles/edit_cache.dir
+/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ProcessRegionSegImg/build/CMakeFiles/rebuild_cache.dir

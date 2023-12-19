@@ -67,6 +67,7 @@ public:
 				int cnt = BFS(i, rid++);
 				cout << "region " << rid-1 << " pix_cnt: " << cnt << ", coord: " << i / m_reg_img.w << ", " << i % m_reg_img.w << endl;
 			}
+		cout << "total region cnt: " << rid - 1 << endl;
 
 		m_regions.resize(rid);
 		for (int i = 0; i < m_ori_img.h * m_ori_img.w; i++)
@@ -79,9 +80,11 @@ public:
 			m_regions[i].reg_color = Vec3i(rand() % 256, rand() % 256, rand() % 256);
 			m_regions[i].GetRegionBbox(m_ori_img.w, m_ori_img.h);
 		}
+		cout << "GetAllRegions done!" << endl;
 
 		//process small noise regions
 		ProcessSmallNoiseRegions();
+		cout << "ProcessSmallNoiseRegions done!" << endl;
 	}
 
 	void ProcessSmallNoiseRegions() {
@@ -217,7 +220,7 @@ public:
 			}
 		}
 		imwrite(reg_path, regions);
-		waitKey();
+		// waitKey();
 
 		//2. output region color index (region_index.png)=============================================
 		int reg_cnt = m_regions.size() - 1;
@@ -247,7 +250,7 @@ public:
 			}
 		}
 		imwrite(region_ind_path, region_ind);
-		waitKey();
+		// waitKey();
 
 
 		//3. output region color and bounding box=====================================================
@@ -289,7 +292,7 @@ public:
 			of << endl;
 		}
 
-		//3 output xjunction info, x-junction detection may not correct, if so£¬ it can be specified by user
+		//3 output xjunction info, x-junction detection may not correct, if soï¿½ï¿½ it can be specified by user
 		of << endl << m_xjunction_vec.size() << endl;
 		for (Vec4i xj : m_xjunction_vec)
 			of << xj[0] << " " << xj[1] << " " << xj[2] << " " << xj[3] << endl;

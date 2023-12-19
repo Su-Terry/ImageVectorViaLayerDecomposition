@@ -6,7 +6,7 @@ import json
 from math import pi, acos, cos, sin, sqrt
 from bs4 import BeautifulSoup
 
-temp_path = ".\\temp\\"
+temp_path = "./temp/"
 
 def parse_param(filename: str):
     with open(filename, "r") as f:
@@ -57,7 +57,7 @@ def parse_gradient_tag(p_min, p_max, theta, parameter, layer_index, region_index
 
 def parse_path_tag(mask: np.ndarray, layer_index, region_index)->str:
     plt.imsave(temp_path + f"{layer_index}-{region_index}.bmp", mask)
-    os.system(f".\\potrace-1.16.win64\\potrace.exe -o {temp_path}{layer_index}-{region_index}.svg -s {temp_path}{layer_index}-{region_index}.bmp")
+    os.system(f"potrace -o {temp_path}{layer_index}-{region_index}.svg -s {temp_path}{layer_index}-{region_index}.bmp")
     with open(temp_path + f"{layer_index}-{region_index}.svg", "r") as f:
         soup = BeautifulSoup(f.read(), features="xml")
         group_tag = soup.find(name="g")
@@ -82,7 +82,7 @@ case = "1-Syn1"
 if __name__ == "__main__":
     #source_path = input('Please input the directory containing "param.json" and masks: ')
     source_path = dirc + "/" + case + "/results/for_vectorize/0/"
-    if not source_path.endswith("\\"): source_path += "\\"
+    # if not source_path.endswith("\\"): source_path += "\\"
     shape, linear_gradients = parse_param(source_path + "param.json")
     gradient_tags = []
     group_tags = []

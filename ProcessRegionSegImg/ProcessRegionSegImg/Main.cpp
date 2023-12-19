@@ -1,13 +1,13 @@
 ﻿
 #include "Utility.h"
 #include <iostream>
-#include <direct.h>
-#include <io.h>
+// #include <direct.h>
+// #include <io.h>
 #include "RegionInfo.h"
 
 int main() { 
 
-    string main_dir = "../Data/";
+    string main_dir = "/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/Data/";
     string cases[] = { "", "1-Syn1", "2-Syn2", "3-Syn3", "4-Syn4", "5-syn5", "6-Can", "7-Battery", "8-Phone", "9-Egg", "10-Cone" };
     int id = 1;
 
