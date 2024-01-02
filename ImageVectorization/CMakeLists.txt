@@ -27,17 +27,31 @@ set(SOURCES
 # Create an executable
 add_executable(${PROJECT_NAME} ${SOURCES})
 
+# Enable compiler optimizations
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+
 target_include_directories(${PROJECT_NAME}
     PRIVATE
     ${NLOPT_INCLUDE_DIRS}
 )
 
-# Link libraries
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME} 
+    PRIVATE 
     ${OpenCV_LIBS}
-    ${NLOPT_LIBRARIES}
-)
+    ${NLOPT_LIBRARIES})
 
-# Set additional compiler flags if needed
-# For example, to enable optimization
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+# Link libraries
+# find_package(OpenMP)
+# if(OpenMP_CXX_FOUND)
+#     target_link_libraries(${PROJECT_NAME} 
+#         PRIVATE 
+#         ${OpenCV_LIBS}
+#         ${NLOPT_LIBRARIES}
+#         PUBLIC
+#         OpenMP::OpenMP_CXX)
+# else()
+#     target_link_libraries(${PROJECT_NAME} 
+#         PRIVATE 
+#         ${OpenCV_LIBS}
+#         ${NLOPT_LIBRARIES})
+# endif()

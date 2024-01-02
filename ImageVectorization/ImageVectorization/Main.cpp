@@ -12,8 +12,8 @@ using namespace std;
 int main() {
 
 	string main_dir = "/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/Data/";
-	string cases[] = { "", "1-Syn1", "2-Syn2", "3-Syn3", "4-Syn4", "5-syn5", "6-Can", "7-Battery", "8-Phone", "9-Egg", "10-Cone" };
-	int id = 1;
+	string cases[] = { "0-Test", "1-Apple", "2-Orange", "3-FatDog" };
+	int id = 2;
 
 	for (int i = id; i < id+1; i++) {
 		cout << "\n\nCase " << i << " : " << cases[i] <<"======================\n\n" ;

@@ -7,6 +7,7 @@
 #include <autodiff/forward/dual.hpp>
 #include <nlopt.h>
 #include "Object.h"
+// #include "gpu_functions.cuh"
 
 using namespace std;
 using namespace cv;

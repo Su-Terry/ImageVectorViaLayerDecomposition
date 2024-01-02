@@ -167,6 +167,7 @@ public:
 			all_spanning_trees = Gx.GetAllSpanningTrees();
 			if (!all_spanning_trees.empty() || tree_depth >= 8) break;
 			tree_depth++;
+			cout << "tree depth: " << tree_depth << endl;
 		}
 
 		tree_depth = 3;
@@ -182,10 +183,12 @@ public:
 		int k = 0;
 		for (int i = 0; i < all_spanning_trees.size(); i++) {
 			Tree tree_(m_regions.size(), all_spanning_trees[i]);
-			if (tree_.SatisfyAllXjunctionConstrains(m_xjunction.m_possible_configs)) {
-				tree_.m_id = k++;
-				m_valid_region_support_trees.push_back(tree_);
-			}
+			// if (tree_.SatisfyAllXjunctionConstrains(m_xjunction.m_possible_configs)) {
+			// 	tree_.m_id = k++;
+			// 	m_valid_region_support_trees.push_back(tree_);
+			// }
+			tree_.m_id = k++;
+			m_valid_region_support_trees.push_back(tree_);
 		}
 		cout << endl << "valid spanning tree cnt: " << m_valid_region_support_trees.size() << endl;
 	}

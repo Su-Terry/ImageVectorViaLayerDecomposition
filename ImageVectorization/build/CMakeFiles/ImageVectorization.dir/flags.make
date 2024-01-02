@@ -6,5 +6,5 @@ CXX_DEFINES = -DNLOPT_DLL
 
 CXX_INCLUDES = -I/usr/include/eigen3 -I/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ImageVectorization/ThirdParty/autodiff-master -isystem /usr/local/include/opencv4
 
-CXX_FLAGS = 
+CXX_FLAGS =  -O3
 
