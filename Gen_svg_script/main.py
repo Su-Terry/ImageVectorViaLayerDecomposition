@@ -77,6 +77,7 @@ def generate_svg_content(gradient_tags, group_tags, shape: np.ndarray)->str:
     return svg_header + defs + geometry + svg_footer
 
 dirc = "../Data"
+# case = "00-Test"
 case = "1-Syn1"
 
 if __name__ == "__main__":

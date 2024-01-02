@@ -61,18 +61,22 @@ public:
 		int pix_cnt = m_reg_img.h * m_reg_img.w;
 		m_pix_regid.resize(pix_cnt, 0);
 
+		int pix_cnt_in_mask = 0;
 		int rid = 1; //region 0 is virtual, so number from 1
 		for (int i = 0; i < m_ori_img.h * m_ori_img.w; i++)
 			if (m_pix_regid[i] == 0 && m_mask_img.IsFgPixelAt(i)) {
 				int cnt = BFS(i, rid++);
+				pix_cnt_in_mask += cnt;
 				cout << "region " << rid-1 << " pix_cnt: " << cnt << ", coord: " << i / m_reg_img.w << ", " << i % m_reg_img.w << endl;
 			}
 		cout << "total region cnt: " << rid - 1 << endl;
+		cout << "pix_cnt_in_mask: " << pix_cnt_in_mask << endl;
 
 		m_regions.resize(rid);
 		for (int i = 0; i < m_ori_img.h * m_ori_img.w; i++)
-			if(m_mask_img.IsFgPixelAt(i))
+			if(m_mask_img.IsFgPixelAt(i)) {
 				m_regions[m_pix_regid[i]].pids.insert(i);
+			}
 
 		//assign each region a color, for debug
 		for (int i = 1; i < m_regions.size(); i++) {
@@ -90,7 +94,7 @@ public:
 	void ProcessSmallNoiseRegions() {
 		vector<int> to_remove_rids;
 		for (int i = 1; i < m_regions.size(); i++) {
-			if (m_regions[i].pids.size() > 20) continue;
+			if (m_regions[i].pids.size() > 100) continue;
 
 			int closest_rid = 0;
 			double min_diff = 1e8;
@@ -99,7 +103,7 @@ public:
 				vector<int> neighbor_pids = m_ori_img.GetNeighborsOf(pid);
 				for (int nb_pid : neighbor_pids) {
 					int nb_pid_rid = m_pix_regid[nb_pid];
-					if (nb_pid_rid != i && m_regions[nb_pid_rid].pids.size() > 20) {
+					if (nb_pid_rid != i && m_regions[nb_pid_rid].pids.size() > 100) {
 						double diff = norm(m_ori_img.m_rgb[pid] - m_ori_img.m_rgb[nb_pid]);
 						if (diff < min_diff) {
 							min_diff = diff;
@@ -109,6 +113,8 @@ public:
 				}
 			}
 			m_regions[closest_rid].pids.insert(m_regions[i].pids.begin(), m_regions[i].pids.end());
+			for (int pid : m_regions[i].pids)
+				m_pix_regid[pid] = closest_rid;
 			to_remove_rids.push_back(i);
 		}
 		for (int i = to_remove_rids.size() - 1; i >= 0; i--)
@@ -134,8 +140,13 @@ public:
 
 				vector<int> adj_pids = m_reg_img.GetNeighborsOf(i, j);
 				for (int adj_pid : adj_pids) {
+					assert(adj_pid < m_pix_regid.size());
 					int adj_rid = m_pix_regid[adj_pid];
 					if (adj_rid != rid) {
+						assert(rid < m_adj_regions.size());
+						if (adj_rid >= m_adj_regions.size())
+							cout << "adj_rid: " << adj_rid << ", m_adj_regions.size(): " << m_adj_regions.size() << endl;
+						assert(adj_rid < m_adj_regions.size());
 						m_adj_regions[rid].insert(adj_rid);
 						m_adj_regions[adj_rid].insert(rid);
 						m_bound_pids.insert(pid);
@@ -164,6 +175,7 @@ public:
 				}
 			}
 		}
+		cout << "GetAdjacencyInfo done!" << endl;
 	}
 
 	//detect the X-junctions in the segmentation image, but it may nor stable.
@@ -263,6 +275,7 @@ public:
 			of << endl;
 		}
 		of << endl; of.close();
+		cout << "OutputRegionInfo_s1 done!" << endl;
 	}
 
 	//out most region should be connect to 0
@@ -297,5 +310,6 @@ public:
 		for (Vec4i xj : m_xjunction_vec)
 			of << xj[0] << " " << xj[1] << " " << xj[2] << " " << xj[3] << endl;
 		of.close();
+		cout << "OutputRegionInfo_s2 done!" << endl;
 	}
 };
