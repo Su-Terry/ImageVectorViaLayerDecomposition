@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <fstream>
 #include "Region.h"
+#include <algorithm>
 
 using namespace std;
 using namespace Eigen;
@@ -67,16 +68,21 @@ public:
 			if (m_pix_regid[i] == 0 && m_mask_img.IsFgPixelAt(i)) {
 				int cnt = BFS(i, rid++);
 				pix_cnt_in_mask += cnt;
-				cout << "region " << rid-1 << " pix_cnt: " << cnt << ", coord: " << i / m_reg_img.w << ", " << i % m_reg_img.w << endl;
 			}
-		cout << "total region cnt: " << rid - 1 << endl;
-		cout << "pix_cnt_in_mask: " << pix_cnt_in_mask << endl;
 
 		m_regions.resize(rid);
 		for (int i = 0; i < m_ori_img.h * m_ori_img.w; i++)
 			if(m_mask_img.IsFgPixelAt(i)) {
 				m_regions[m_pix_regid[i]].pids.insert(i);
 			}
+
+		//process small noise regions
+		ProcessSmallNoiseRegions();
+		cout << "ProcessSmallNoiseRegions done!" << endl;
+
+		cout << "Total region cnt: " << m_regions.size() - 1 << endl;
+		for (int i = 1; i < m_regions.size(); i++)
+			cout << "region " << i << " pix cnt: " << m_regions[i].pids.size() << endl;
 
 		//assign each region a color, for debug
 		for (int i = 1; i < m_regions.size(); i++) {
@@ -85,46 +91,49 @@ public:
 			m_regions[i].GetRegionBbox(m_ori_img.w, m_ori_img.h);
 		}
 		cout << "GetAllRegions done!" << endl;
-
-		//process small noise regions
-		ProcessSmallNoiseRegions();
-		cout << "ProcessSmallNoiseRegions done!" << endl;
 	}
 
 	void ProcessSmallNoiseRegions() {
-		vector<int> to_remove_rids;
-		for (int i = 1; i < m_regions.size(); i++) {
-			if (m_regions[i].pids.size() > 100) continue;
-
-			int closest_rid = 0;
-			double min_diff = 1e8;
-
-			for (int pid : m_regions[i].pids) {
-				vector<int> neighbor_pids = m_ori_img.GetNeighborsOf(pid);
-				for (int nb_pid : neighbor_pids) {
-					int nb_pid_rid = m_pix_regid[nb_pid];
-					if (nb_pid_rid != i && m_regions[nb_pid_rid].pids.size() > 100) {
-						double diff = norm(m_ori_img.m_rgb[pid] - m_ori_img.m_rgb[nb_pid]);
-						if (diff < min_diff) {
-							min_diff = diff;
-							closest_rid = nb_pid_rid;
+		int tot = m_regions.size() - 1;
+		int removed = 0;
+		for(int g = 0; ; ++g) {
+			if (tot - removed < 300) break;
+			for (int i = 1; i < m_regions.size(); i++) {
+				if (m_regions[i].pids.empty()) continue;
+				if (m_regions[i].pids.size() < g) {
+					for (int pid : m_regions[i].pids) {
+						int closest_rid = 0;
+						double min_diff = 1e8;
+						vector<int> neighbor_pids = m_ori_img.GetNeighborsOf(pid);
+						for (int nb_pid : neighbor_pids) {
+							int nb_pid_rid = m_pix_regid[nb_pid];
+							if (nb_pid_rid != i && m_regions[nb_pid_rid].pids.size() >= m_regions[i].pids.size()) {
+								double diff = norm(m_ori_img.m_rgb[pid] - m_ori_img.m_rgb[nb_pid]);
+								if (diff < min_diff) {
+									min_diff = diff;
+									closest_rid = nb_pid_rid;
+								}
+							}
 						}
+						m_regions[closest_rid].pids.insert(pid);
+						m_pix_regid[pid] = closest_rid;
 					}
+					m_regions[i].pids.clear();
+					++removed;
 				}
 			}
-			m_regions[closest_rid].pids.insert(m_regions[i].pids.begin(), m_regions[i].pids.end());
-			for (int pid : m_regions[i].pids)
-				m_pix_regid[pid] = closest_rid;
-			to_remove_rids.push_back(i);
 		}
-		for (int i = to_remove_rids.size() - 1; i >= 0; i--)
-			m_regions.erase(m_regions.begin() + to_remove_rids[i]);
-
+		// Reassign region id
+		int rid = 1;
 		for (int i = 1; i < m_regions.size(); i++) {
-			m_regions[i].rid = i;
+			if (m_regions[i].pids.empty()) continue;
 			for (int pid : m_regions[i].pids)
-				m_pix_regid[pid] = i;
+				m_pix_regid[pid] = rid;
+			m_regions[rid] = m_regions[i];
+			m_regions[rid].rid = rid;
+			++rid;
 		}
+		m_regions.resize(rid);
 	}
 
 	void GetAdjacencyInfo(string reg_info_path) {
@@ -132,9 +141,11 @@ public:
 		map<Vec2i, set<int>, vec2icmp>  region_boundary_pixcnt;
 		int h = m_reg_img.h;
 		int w = m_reg_img.w;
+
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < w; j++) {
 				int pid = i * w + j;
+				assert(pid < m_pix_regid.size());
 				int rid = m_pix_regid[pid];
 				if (rid == 0) continue; //0: ignore background pixels
 
@@ -142,11 +153,8 @@ public:
 				for (int adj_pid : adj_pids) {
 					assert(adj_pid < m_pix_regid.size());
 					int adj_rid = m_pix_regid[adj_pid];
+					// cout << "adj_pid: " << adj_pid << " adj_rid: " << adj_rid << endl;
 					if (adj_rid != rid) {
-						assert(rid < m_adj_regions.size());
-						if (adj_rid >= m_adj_regions.size())
-							cout << "adj_rid: " << adj_rid << ", m_adj_regions.size(): " << m_adj_regions.size() << endl;
-						assert(adj_rid < m_adj_regions.size());
 						m_adj_regions[rid].insert(adj_rid);
 						m_adj_regions[adj_rid].insert(rid);
 						m_bound_pids.insert(pid);

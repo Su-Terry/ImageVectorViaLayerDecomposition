@@ -9,15 +9,18 @@ using namespace std;
 
 // #include <filesystem>
 
-int main() {
+int main(int argc, char** argv) {
 
 	string main_dir = "/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/Data/";
-	string cases[] = { "0-Test", "1-Apple", "2-Orange", "3-FatDog" };
-	int id = 2;
+    // string cases[] = { "", "1-Apple", "2-Apple-SAM", "3-Orange", "4-Orange-SAM", "5-Sushi", "6-Sushi-SAM" };
+	// int id = 5;
+	assert(argc == 2);
 
-	for (int i = id; i < id+1; i++) {
-		cout << "\n\nCase " << i << " : " << cases[i] <<"======================\n\n" ;
-		string data_dir = main_dir + cases[i];
+	// for (int i = id; i < id+1; i++) {
+		// cout << "\n\nCase " << i << " : " << cases[i] <<"======================\n\n" ;
+		// string data_dir = main_dir + cases[i];
+		cout << "\n\nCase " << argv[1] <<"======================\n\n" ;
+		string data_dir = main_dir + argv[1];
 		string input_img_path = data_dir + "/input.png";
 		string input_region_img_path = data_dir + "/region.png";
 		string input_region_info_path = data_dir + "/region_info.txt";
@@ -39,14 +42,16 @@ int main() {
 		Rst.BuildAdjacentRegionGraph();
 		Rst.GetValidRegionSupportingTrees();
 		vector<Tree> ValidRegSupportTrees = Rst.m_valid_region_support_trees;
-		if (ValidRegSupportTrees.empty()) continue;
+		// if (ValidRegSupportTrees.empty()) continue;
+		if (ValidRegSupportTrees.empty()) return -1;
 		clock_t t1 = clock();
 
 		//2. layer merging==========================================================
 		cout << "2. start to merge layers...\n" << endl;
-		vector<LayerMerging> LMs(ValidRegSupportTrees.size());
+		int tree_cnt = min(100, (int)ValidRegSupportTrees.size());
+		vector<LayerMerging> LMs(tree_cnt);
 #pragma omp parallel for
-		for (int ind = 0; ind < (int)ValidRegSupportTrees.size(); ind++) {
+		for (int ind = 0; ind < tree_cnt; ind++) {
 			Tree tree = ValidRegSupportTrees[ind];
 			LMs[ind] = LayerMerging(Rst.m_regions, tree);
 			LMs[ind].DetermineLayerRange();
@@ -64,6 +69,7 @@ int main() {
 		//3. layer parameter optimization====================================================
 		cout << "3. start to estimate layer parameters...\n" << endl;
 		vector<LayerVectorizing> LVs(LMs.size());
+		cout << "layer cnt:" << LMs.size() << endl;
 #pragma omp parallel for
 		for (int ind = 0; ind < LVs.size(); ind++) {
 			LVs[ind] = LayerVectorizing(Rst.m_regions,  &ori_img, LMs[ind].GetLayerObject());
@@ -84,6 +90,6 @@ int main() {
 			LVs[ind].OutputJsonForPresentation(output_json_path + to_string(ind) + "/param.json");
 			LVs[ind].OutputLayerMask(output_layer_mask_path + to_string(ind) + "/");
 		}
-	}
+	// }
 	return 0;
 }

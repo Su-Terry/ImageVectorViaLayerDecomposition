@@ -8,6 +8,7 @@
 #include<queue>
 #include<numeric>
 #include<opencv2/opencv.hpp>
+#include <Eigen/Dense>
 
 using namespace std;
 using namespace cv;
@@ -112,72 +113,129 @@ public:
         return true;
     }
 
-    void enum_tree(int const u, vector<int>& cand, int const left, vector<int>& depth, int cnt, vector<int>& xj_cnt, int cnt2, vector<int>& choices) {
-        if (++cnt == n) {
-            vector<Vec2i> tree;
-            for (auto const& eid : choices)
-                tree.push_back(Vec2i(edges[eid].u, edges[eid].v));
-            sort(tree.begin(), tree.end(), vec3icmp_);
-            trees.push_back(tree);
-            return;
-        }
-        int from = cand.size();
-        for (auto const eid : edge_p[u])
-            if (!depth[edges[eid].v])
-                cand.push_back(eid);
+    // void enum_tree(int const u, vector<int>& cand, int const left, vector<int>& depth, int cnt, vector<int>& xj_cnt, int cnt2, vector<int>& choices) {
+    //     if (trees.size() >= 100)
+    //         return;
+    //     if (++cnt == n) {
+    //         vector<Vec2i> tree;
+    //         for (auto const& eid : choices)
+    //             tree.push_back(Vec2i(edges[eid].u, edges[eid].v));
+    //         sort(tree.begin(), tree.end(), vec3icmp_);
+    //         trees.push_back(tree);
+    //         return;
+    //     }
+    //     int from = cand.size();
+    //     for (auto const eid : edge_p[u])
+    //         if (!depth[edges[eid].v])
+    //             cand.push_back(eid);
 
-        for (int k = left; k < cand.size(); ++k) {
-            auto const& e = edges[cand[k]];
-            if (!depth[e.v] && depth[e.u] <= max_tree_depth && (cnt2 < max_node_cnt_in_L1 || depth[e.u] != 1)) {
-                choices.push_back(cand[k]);
-                depth[e.v] = depth[e.u] + 1;
-                for (auto i : xj_p[e.v])
-                    ++xj_cnt[i];
-                if (x_junction_test(e.v, depth, xj_cnt, choices))
-                    enum_tree(e.v, cand, k + 1, depth, cnt, xj_cnt, cnt2 + (depth[e.v] == 2), choices);
-                for (auto i : xj_p[e.v])
-                    --xj_cnt[i];
-                depth[e.v] = 0;
-                choices.pop_back();
-                if (nec[cand[k]])
-                    break;
-            }
-            else if (nec[cand[k]])
-                break;
-        }
-        cand.erase(cand.begin() + from, cand.end());
-    }
+    //     for (int k = left; k < cand.size(); ++k) {
+    //         auto const& e = edges[cand[k]];
 
-    bool check_connectivity(int const root, int const ban_eid) {
-        vector<bool> visit(n, 0);
-        visit[root] = 1;
-        for (queue<int> q({ root });!q.empty();q.pop()) {
-            int const u = q.front();
-            for (auto const eid : edge_p[u]) {
-                if (eid == ban_eid)
-                    continue;
-                if (!visit[edges[eid].v]) {
-                    visit[edges[eid].v] = 1;
-                    q.push(edges[eid].v);
+    //         if (!depth[e.v] && depth[e.u] <= max_tree_depth && (cnt2 < max_node_cnt_in_L1 || depth[e.u] != 1)) {
+    //             choices.push_back(cand[k]);
+    //             depth[e.v] = depth[e.u] + 1;
+    //             for (auto i : xj_p[e.v])
+    //                 ++xj_cnt[i];
+    //             if (x_junction_test(e.v, depth, xj_cnt, choices))
+    //                 enum_tree(e.v, cand, k + 1, depth, cnt, xj_cnt, cnt2 + (depth[e.v] == 2), choices);
+    //             for (auto i : xj_p[e.v])
+    //                 --xj_cnt[i];
+    //             depth[e.v] = 0;
+    //             choices.pop_back();
+    //             if (nec[cand[k]])
+    //                 break;
+    //         }
+    //         else if (nec[cand[k]])
+    //             break;
+    //     }
+    //     cand.erase(cand.begin() + from, cand.end());
+    // }
+
+    // bool check_connectivity(int const root, int const ban_eid) {
+    //     vector<bool> visit(n, 0);
+    //     visit[root] = 1;
+    //     for (queue<int> q({ root });!q.empty();q.pop()) {
+    //         int const u = q.front();
+    //         for (auto const eid : edge_p[u]) {
+    //             if (eid == ban_eid)
+    //                 continue;
+    //             if (!visit[edges[eid].v]) {
+    //                 visit[edges[eid].v] = 1;
+    //                 q.push(edges[eid].v);
+    //             }
+    //         }
+    //     }
+    //     return std::accumulate(visit.begin(), visit.end(), 0) == n;
+    // }
+
+    // void enum_tree(int const root) {
+    //     nec = vector<bool>(edges.size(), 0);
+    //     for (int eid = 0;eid < edges.size();++eid)
+    //         nec[eid] = !check_connectivity(root, eid);
+    //     vector<int> cand(0), choices(0);
+    //     vector<int> depth(n, 0);
+    //     vector<int> xj_cnt(xjs.size(), 0);
+    //     depth[root] = 1;
+    //     enum_tree(root, cand, 0, depth, 0, xj_cnt, 0, choices);
+    // }
+
+    vector<vector<int>> findSpanningTrees(const MatrixXd& inverseCofactorMatrix) {
+        int numVertices = inverseCofactorMatrix.rows() + 1;
+        vector<vector<int>> spanningTrees;
+
+        // Iterate through each non-zero entry in the inverse of the cofactor matrix
+        for (int i = 0; i < inverseCofactorMatrix.rows(); ++i) {
+            for (int j = 0; j < inverseCofactorMatrix.cols(); ++j) {
+                if (inverseCofactorMatrix(i, j) != 0) {
+                    // Initialize a tree with the edge (i, j)
+                    vector<int> tree(numVertices, 0);
+                    tree[i] = 1;
+                    tree[j] = 1;
+
+                    // Continue building the tree by exploring other edges
+                    for (int k = 0; k < inverseCofactorMatrix.cols(); ++k) {
+                        if (inverseCofactorMatrix(j, k) != 0) {
+                            tree[k] = 1;
+                            break;
+                        }
+                    }
+
+                    // Add the constructed tree to the list of spanning trees
+                    spanningTrees.push_back(tree);
                 }
             }
         }
-        return std::accumulate(visit.begin(), visit.end(), 0) == n;
-    }
 
-    void enum_tree(int const root) {
-        nec = vector<bool>(edges.size(), 0);
-        for (int eid = 0;eid < edges.size();++eid)
-            nec[eid] = !check_connectivity(root, eid);
-        vector<int> cand(0), choices(0);
-        vector<int> depth(n, 0);
-        vector<int> xj_cnt(xjs.size(), 0);
-        depth[root] = 1;
-        enum_tree(root, cand, 0, depth, 0, xj_cnt, 0, choices);
+        return spanningTrees;
     }
 
     vector<vector<Vec2i>> GetAllSpanningTrees() {
-        enum_tree(0);
+        trees.clear();
+        MatrixXd adj = MatrixXd::Zero(n, n);
+        for (auto const& e : edges)
+            adj(e.u, e.v) = adj(e.v, e.u) = 1;
+        VectorXd degreeMatrix = adj.colwise().sum();
+        MatrixXd degreeMatrixFull = degreeMatrix.asDiagonal();
+        MatrixXd laplacianMatrix = degreeMatrixFull - adj;
+        MatrixXd cofactorMatrix = laplacianMatrix.block(1, 1, n - 1, n - 1);
+        MatrixXd inverseCofactorMatrix = cofactorMatrix.inverse();
+        vector<vector<int>> spanningTrees = findSpanningTrees(inverseCofactorMatrix);
+        cout << spanningTrees.size() << endl;
+        for (auto const& tree : spanningTrees) {
+            vector<Vec2i> tree_edges;
+            for (int i = 0; i < tree.size(); ++i) {
+                if (tree[i] == 1) {
+                    for (auto const& eid : edge_p[i])
+                        tree_edges.push_back(Vec2i(edges[eid].u, edges[eid].v));
+                }
+            }
+            sort(tree_edges.begin(), tree_edges.end(), vec3icmp_);
+            trees.push_back(tree_edges);
+        }
+
+
+        // enum_tree(0);
         return trees;
     }
 

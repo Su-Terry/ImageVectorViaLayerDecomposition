@@ -77,10 +77,13 @@ def generate_svg_content(gradient_tags, group_tags, shape: np.ndarray)->str:
     return svg_header + defs + geometry + svg_footer
 
 dirc = "../Data"
-# case = "00-Test"
-case = "1-Syn1"
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-c", "--case", type=str, required=True)
+    args = parser.parse_args()
+    case = args.case
     #source_path = input('Please input the directory containing "param.json" and masks: ')
     source_path = dirc + "/" + case + "/results/for_vectorize/0/"
     # if not source_path.endswith("\\"): source_path += "\\"

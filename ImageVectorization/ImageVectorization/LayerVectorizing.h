@@ -261,6 +261,9 @@ public:
 		m_layer_imgs[0] = m_reconstructed_img;
 		hconcat(m_layer_imgs, result);
 		cv::imwrite(layer_path + ".png", result);
+
+		// Save reconstructed image separately
+		cv::imwrite(layer_path + "_recon.png", m_reconstructed_img);
 	}
 
 	void OutputLayerMask(string layer_mask_path) {

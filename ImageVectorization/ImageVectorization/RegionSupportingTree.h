@@ -167,7 +167,7 @@ public:
 			all_spanning_trees = Gx.GetAllSpanningTrees();
 			if (!all_spanning_trees.empty() || tree_depth >= 8) break;
 			tree_depth++;
-			cout << "tree depth: " << tree_depth << endl;
+			// cout << "tree depth: " << tree_depth << endl;
 		}
 
 		tree_depth = 3;
