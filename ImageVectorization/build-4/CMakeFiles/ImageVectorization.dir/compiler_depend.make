@@ -561,6 +561,69 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
   /usr/include/c++/11/numeric \
   /usr/include/c++/11/bits/stl_numeric.h \
   /usr/include/c++/11/pstl/glue_numeric_defs.h \
+  /usr/include/eigen3/Eigen/Dense \
+  /usr/include/eigen3/Eigen/Core \
+  /usr/include/eigen3/Eigen/LU \
+  /usr/include/eigen3/Eigen/src/misc/Kernel.h \
+  /usr/include/eigen3/Eigen/src/misc/Image.h \
+  /usr/include/eigen3/Eigen/src/LU/FullPivLU.h \
+  /usr/include/eigen3/Eigen/src/LU/PartialPivLU.h \
+  /usr/include/eigen3/Eigen/src/LU/Determinant.h \
+  /usr/include/eigen3/Eigen/src/LU/InverseImpl.h \
+  /usr/include/eigen3/Eigen/src/LU/arch/InverseSize4.h \
+  /usr/include/eigen3/Eigen/Cholesky \
+  /usr/include/eigen3/Eigen/Jacobi \
+  /usr/include/eigen3/Eigen/src/Jacobi/Jacobi.h \
+  /usr/include/eigen3/Eigen/src/Cholesky/LLT.h \
+  /usr/include/eigen3/Eigen/src/Cholesky/LDLT.h \
+  /usr/include/eigen3/Eigen/QR \
+  /usr/include/eigen3/Eigen/Householder \
+  /usr/include/eigen3/Eigen/src/Householder/Householder.h \
+  /usr/include/eigen3/Eigen/src/Householder/HouseholderSequence.h \
+  /usr/include/eigen3/Eigen/src/Householder/BlockHouseholder.h \
+  /usr/include/eigen3/Eigen/src/QR/HouseholderQR.h \
+  /usr/include/eigen3/Eigen/src/QR/FullPivHouseholderQR.h \
+  /usr/include/eigen3/Eigen/src/QR/ColPivHouseholderQR.h \
+  /usr/include/eigen3/Eigen/src/QR/CompleteOrthogonalDecomposition.h \
+  /usr/include/eigen3/Eigen/SVD \
+  /usr/include/eigen3/Eigen/src/misc/RealSvd2x2.h \
+  /usr/include/eigen3/Eigen/src/SVD/UpperBidiagonalization.h \
+  /usr/include/eigen3/Eigen/src/SVD/SVDBase.h \
+  /usr/include/eigen3/Eigen/src/SVD/JacobiSVD.h \
+  /usr/include/eigen3/Eigen/src/SVD/BDCSVD.h \
+  /usr/include/eigen3/Eigen/Geometry \
+  /usr/include/eigen3/Eigen/src/Geometry/OrthoMethods.h \
+  /usr/include/eigen3/Eigen/src/Geometry/EulerAngles.h \
+  /usr/include/eigen3/Eigen/src/Geometry/Homogeneous.h \
+  /usr/include/eigen3/Eigen/src/Geometry/RotationBase.h \
+  /usr/include/eigen3/Eigen/src/Geometry/Rotation2D.h \
+  /usr/include/eigen3/Eigen/src/Geometry/Quaternion.h \
+  /usr/include/eigen3/Eigen/src/Geometry/AngleAxis.h \
+  /usr/include/eigen3/Eigen/src/Geometry/Transform.h \
+  /usr/include/eigen3/Eigen/src/Geometry/Translation.h \
+  /usr/include/eigen3/Eigen/src/Geometry/Scaling.h \
+  /usr/include/eigen3/Eigen/src/Geometry/Hyperplane.h \
+  /usr/include/eigen3/Eigen/src/Geometry/ParametrizedLine.h \
+  /usr/include/eigen3/Eigen/src/Geometry/AlignedBox.h \
+  /usr/include/eigen3/Eigen/src/Geometry/Umeyama.h \
+  /usr/include/eigen3/Eigen/src/Geometry/arch/Geometry_SIMD.h \
+  /usr/include/eigen3/Eigen/Eigenvalues \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/Tridiagonalization.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/HessenbergDecomposition.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/EigenSolver.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/Tridiagonalization.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/HessenbergDecomposition.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
+  /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
   ../ImageVectorization/Tree.h \
   ../ImageVectorization/LayerMerging.h \
   ../ImageVectorization/Object.h \
@@ -605,6 +668,64 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 ../ThirdParty/autodiff-master/autodiff/forward/dual.hpp:
 
 ../ImageVectorization/Object.h:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur.h:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/AlignedBox.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/Scaling.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/Translation.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/AngleAxis.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/Quaternion.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/Rotation2D.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/Homogeneous.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/EulerAngles.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/OrthoMethods.h:
+
+/usr/include/eigen3/Eigen/Geometry:
+
+/usr/include/eigen3/Eigen/src/SVD/UpperBidiagonalization.h:
+
+/usr/include/eigen3/Eigen/SVD:
+
+/usr/include/eigen3/Eigen/src/QR/CompleteOrthogonalDecomposition.h:
+
+/usr/include/eigen3/Eigen/src/QR/ColPivHouseholderQR.h:
+
+/usr/include/eigen3/Eigen/src/QR/FullPivHouseholderQR.h:
+
+/usr/include/eigen3/Eigen/src/Householder/Householder.h:
+
+/usr/include/eigen3/Eigen/Householder:
+
+/usr/include/eigen3/Eigen/Jacobi:
+
+/usr/include/eigen3/Eigen/src/LU/Determinant.h:
+
+/usr/include/eigen3/Eigen/src/misc/Image.h:
+
+/usr/include/eigen3/Eigen/src/misc/Kernel.h:
+
+/usr/include/eigen3/Eigen/LU:
+
+/usr/include/eigen3/Eigen/Dense:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/Tridiagonalization.h:
+
+/usr/include/eigen3/Eigen/src/LU/arch/InverseSize4.h:
 
 /usr/include/c++/11/pstl/glue_numeric_defs.h:
 
@@ -658,6 +779,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/include/c++/11/tr1/gamma.tcc:
 
+/usr/include/eigen3/Eigen/src/Eigenvalues/EigenSolver.h:
+
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/local/include/opencv4/opencv2/core/fast_math.hpp:
@@ -676,11 +799,19 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
+/usr/include/eigen3/Eigen/src/Eigenvalues/HessenbergDecomposition.h:
+
 /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
 /usr/include/c++/11/string_view:
 
+/usr/include/eigen3/Eigen/src/Jacobi/Jacobi.h:
+
+/usr/include/eigen3/Eigen/src/LU/PartialPivLU.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/ParametrizedLine.h:
 
 /usr/include/c++/11/cstring:
 
@@ -705,6 +836,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/include/stdio.h:
 
 ../ImageVectorization/RegionSupportingTree.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/arch/Geometry_SIMD.h:
 
 /usr/include/c++/11/cstdio:
 
@@ -760,6 +893,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/include/c++/11/bits/specfun.h:
 
+/usr/include/eigen3/Eigen/src/Householder/BlockHouseholder.h:
+
 /usr/include/eigen3/Eigen/src/Core/functors/TernaryFunctors.h:
 
 /usr/local/include/opencv4/opencv2/dnn/version.hpp:
@@ -809,6 +944,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/include/c++/11/bits/enable_special_members.h:
 
 /usr/include/c++/11/bits/basic_ios.tcc:
+
+/usr/include/eigen3/Eigen/src/Geometry/RotationBase.h:
 
 /usr/include/c++/11/bits/codecvt.h:
 
@@ -916,11 +1053,15 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/include/c++/11/pstl/pstl_config.h:
 
+/usr/include/eigen3/Eigen/src/LU/FullPivLU.h:
+
 /usr/include/eigen3/Eigen/src/Core/arch/SSE/Complex.h:
 
 /usr/include/stdlib.h:
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
+
+/usr/include/eigen3/Eigen/src/Cholesky/LLT.h:
 
 /usr/include/c++/11/bits/uniform_int_dist.h:
 
@@ -933,6 +1074,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/include/c++/11/chrono:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/Hyperplane.h:
 
 /usr/include/features.h:
 
@@ -979,6 +1122,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/include/eigen3/Eigen/src/Core/Assign.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/eigen3/Eigen/Cholesky:
 
 /usr/include/c++/11/bits/invoke.h:
 
@@ -1092,6 +1237,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/include/features-time64.h:
 
+/usr/include/eigen3/Eigen/src/Householder/HouseholderSequence.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
 
 /usr/include/c++/11/debug/debug.h:
@@ -1107,6 +1254,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/local/include/opencv4/opencv2/flann/timer.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
+
+/usr/include/eigen3/Eigen/src/SVD/JacobiSVD.h:
 
 /usr/local/include/opencv4/opencv2/core/affine.hpp:
 
@@ -1266,6 +1415,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/include/assert.h:
 
+/usr/include/eigen3/Eigen/src/SVD/SVDBase.h:
+
 /usr/include/c++/11/ext/atomicity.h:
 
 /usr/include/eigen3/Eigen/src/Core/DenseBase.h:
@@ -1286,11 +1437,15 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/include/eigen3/Eigen/src/Core/util/ConfigureVectorization.h:
 
+/usr/include/eigen3/Eigen/src/Geometry/Umeyama.h:
+
 /usr/include/c++/11/sstream:
 
 /usr/include/c++/11/istream:
 
 /usr/include/c++/11/bits/locale_classes.h:
+
+/usr/include/eigen3/Eigen/src/Cholesky/LDLT.h:
 
 /usr/local/include/opencv4/opencv2/features2d.hpp:
 
@@ -1335,6 +1490,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/include/c++/11/ratio:
 
 /usr/include/c++/11/ctime:
+
+/usr/include/eigen3/Eigen/src/SVD/BDCSVD.h:
 
 /usr/include/eigen3/Eigen/src/plugins/ArrayCwiseBinaryOps.h:
 
@@ -1388,6 +1545,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/local/include/opencv4/opencv2/flann/random.h:
 
+/usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h:
+
 /usr/local/include/opencv4/opencv2/flann.hpp:
 
 /usr/include/c++/11/bits/fs_path.h:
@@ -1411,6 +1570,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/include/eigen3/Eigen/src/Core/util/Constants.h:
 
 /usr/local/include/opencv4/opencv2/flann/nn_index.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
@@ -1448,6 +1609,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/local/include/opencv4/opencv2/flann/allocator.h:
 
+/usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h:
+
 /usr/include/eigen3/Eigen/src/Core/products/SelfadjointMatrixMatrix.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
@@ -1469,6 +1632,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/include/eigen3/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h:
 
 /usr/local/include/opencv4/opencv2/flann/lsh_index.h:
+
+/usr/include/eigen3/Eigen/src/LU/InverseImpl.h:
 
 /usr/include/eigen3/Eigen/src/Core/products/Parallelizer.h:
 
@@ -1498,6 +1663,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/include/c++/11/bits/quoted_string.h:
 
+/usr/include/eigen3/Eigen/Eigenvalues:
+
 /usr/include/c++/11/math.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
@@ -1519,6 +1686,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/local/include/opencv4/opencv2/core/operations.hpp:
 
 /usr/local/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
 
 /usr/local/include/opencv4/opencv2/stitching.hpp:
 
@@ -1545,6 +1714,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/include/c++/11/deque:
 
 /usr/include/c++/11/bits/deque.tcc:
+
+/usr/include/eigen3/Eigen/QR:
 
 /usr/local/include/opencv4/opencv2/stitching/detail/camera.hpp:
 
@@ -1650,6 +1821,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 
 /usr/include/eigen3/Eigen/src/Core/ArrayBase.h:
 
+/usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur.h:
+
 /usr/include/c++/11/bits/fstream.tcc:
 
 /usr/include/eigen3/Eigen/src/plugins/ArrayCwiseUnaryOps.h:
@@ -1675,6 +1848,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/include/eigen3/Eigen/src/Core/CwiseNullaryOp.h:
 
 /usr/include/eigen3/Eigen/src/Core/SelfCwiseBinaryOp.h:
+
+/usr/include/eigen3/Eigen/src/QR/HouseholderQR.h:
 
 /usr/include/eigen3/Eigen/src/Core/Stride.h:
 
@@ -1703,6 +1878,8 @@ CMakeFiles/ImageVectorization.dir/ImageVectorization/Main.cpp.o: ../ImageVectori
 /usr/include/c++/11/bits/uses_allocator.h:
 
 /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h:
+
+/usr/include/eigen3/Eigen/src/misc/RealSvd2x2.h:
 
 /usr/include/eigen3/Eigen/src/Core/products/TriangularMatrixVector.h:
 

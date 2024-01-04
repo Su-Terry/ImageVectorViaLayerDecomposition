@@ -97,7 +97,7 @@ public:
 		int tot = m_regions.size() - 1;
 		int removed = 0;
 		for(int g = 0; ; ++g) {
-			if (tot - removed < 300) break;
+			if (tot - removed < 50) break;
 			for (int i = 1; i < m_regions.size(); i++) {
 				if (m_regions[i].pids.empty()) continue;
 				if (m_regions[i].pids.size() < g) {
