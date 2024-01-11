@@ -11,7 +11,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-	string main_dir = "/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/Data/";
+	string main_dir = "../../Data/";
     // string cases[] = { "", "1-Apple", "2-Apple-SAM", "3-Orange", "4-Orange-SAM", "5-Sushi", "6-Sushi-SAM" };
 	// int id = 5;
 	assert(argc == 2);

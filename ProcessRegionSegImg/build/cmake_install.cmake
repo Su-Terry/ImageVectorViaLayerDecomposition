@@ -1,4 +1,4 @@
-# Install script for directory: /home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ProcessRegionSegImg
+# Install script for directory: /project/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ProcessRegionSegImg
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ProcessRegionSegImg/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/project/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ProcessRegionSegImg/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
