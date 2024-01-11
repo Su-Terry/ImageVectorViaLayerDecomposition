@@ -1,3 +1,0 @@
-/project/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ProcessRegionSegImg/build/CMakeFiles/ProcessRegionSegImg.dir
-/project/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ProcessRegionSegImg/build/CMakeFiles/edit_cache.dir
-/project/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ProcessRegionSegImg/build/CMakeFiles/rebuild_cache.dir

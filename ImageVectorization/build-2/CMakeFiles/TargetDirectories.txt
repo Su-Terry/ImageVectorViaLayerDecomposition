@@ -1,3 +1,0 @@
-/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ImageVectorization/build-2/CMakeFiles/ImageVectorization.dir
-/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ImageVectorization/build-2/CMakeFiles/edit_cache.dir
-/home/oceanic/Layered-Vectorization-Natural-Image/ImageVectorViaLayerDecomposition/ImageVectorization/build-2/CMakeFiles/rebuild_cache.dir
